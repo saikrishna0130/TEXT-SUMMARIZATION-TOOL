@@ -1,0 +1,22 @@
+from transformers import pipeline
+
+# Load the summarization pipeline with a specified model
+summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+
+# Input text (replace this with any lengthy article)
+input_text = """
+Artificial Intelligence (AI) is a rapidly evolving field of computer science that focuses on creating machines 
+that can perform tasks that typically require human intelligence. These tasks include reasoning, learning, 
+problem-solving, perception, and language understanding. AI has numerous applications, from virtual assistants 
+like Siri and Alexa to autonomous vehicles and advanced data analytics. With the advancement of technology, 
+AI continues to grow in complexity and capability, leading to innovations in healthcare, finance, education, 
+and many other sectors. However, there are also concerns about job displacement, ethical considerations, and 
+bias in AI systems, which must be addressed as the field progresses.
+"""
+
+# Generate summary
+summary = summarizer(input_text, max_length=60, min_length=30, do_sample=False)
+
+# Output summary
+print("\n--- Summary ---\n")
+print(summary[0]['summary_text'])
